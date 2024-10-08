@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			message: null,
 			demo: [
 				{
 					title: "FIRST",
@@ -12,17 +13,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			characters: [{}]
+
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+
+			getMessage: async () => {
+				try {
+					// fetching data from the backend
+					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
+					const data = await resp.json()
+					setStore({ message: data.message })
+					// don't forget to return something, that is how the async resolves
+					return data;
+				} catch (error) {
+					console.log("Error loading message from backend", error)
+				}
 			},
 			changeColor: (index, color) => {
 				//get the store
@@ -38,8 +48,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			}
+		},
+
+		getCharactersRaM: async () => {
+			const response = await fetch('https://rickandmortyapi.com/api/character');
+			if (!response.ok) {
+				console.log('error');
+				return
+			}
+			const data = await response.js();
+			console.log(data.results)
+			setStore({ characters: data.results })
 		}
-	};
+	}
 };
+
 
 export default getState;
