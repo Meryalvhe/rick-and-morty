@@ -18,7 +18,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 		},
 		actions: {
-
+			searchFilter: (value) =>{
+				setStore({characters: value})
+			},
 	 		getCharactersRaM: async () => {
 			const response = await fetch('https://rickandmortyapi.com/api/character/?page=1');
 			if (!response.ok) {
