@@ -10,6 +10,7 @@ import { Context } from "../store/appContext.js";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	const [busqueda, setBusqueda] = useState('');
+	const [ volver, setVolver] = useState ('')
 
 	const filtrar= (elem) =>{
 		elem = busqueda
@@ -18,10 +19,15 @@ export const Navbar = () => {
 				return elemento;
 			}
 		});
-		actions.searchFilter(resultado)
-		if (busqueda == ''){
-			actions.getCharactersRaM();
-		}
+		actions.searchFilter(resultado);
+		setVolver(resultado);
+	}
+
+	const reverseFilter =()=>{
+		setBusqueda('');
+		setVolver('')
+		actions.getCharactersRaM();
+
 	}
 
 	return (
@@ -38,6 +44,7 @@ export const Navbar = () => {
 				<div className="col-12">
 				<div className="searchBox m-auto">
 						<input className="searchInput" type="text" name="" placeholder="Search your Character" value={busqueda} onChange={(event)=> setBusqueda(event.target.value)} />
+						{ !volver? 
 						<button className="searchButton" href="#">
 							<svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none" onClick={()=>filtrar()}>
 								<g clipPath="url(#clip0_2_17)">
@@ -62,6 +69,9 @@ export const Navbar = () => {
 								</defs>
 							</svg>
 						</button>
+						:
+						<i class="far fa-times-circle cerrar" onClick={()=>reverseFilter()}></i>
+						}
 					</div>
 				</div>
 

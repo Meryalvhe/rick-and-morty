@@ -48,3 +48,8 @@ button:active {
   padding: 24px 46px 24px 26px;
 }
 
+.cerrar {
+  font-size: 30px;
+  color: #009EFD;
+  margin-right: 10px;
+}
