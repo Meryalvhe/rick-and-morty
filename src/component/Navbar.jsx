@@ -3,6 +3,7 @@ import rickandMorty from "../img/rym.png"
 import logo from "../img/logo.png"
 import "../styles/navbar.css"
 import { Characters } from "../views/Characters.jsx";
+import { Boton } from "./Boton.jsx";
 
 
 export const Navbar = () => {
@@ -12,8 +13,8 @@ export const Navbar = () => {
 				<div className="col-12">
 				<header className="d-flex flex-wrap justify-content-center">
 					<a href="/" className="d-flex align-items-center mb-3 mb-md-0  link-body-emphasis text-decoration-none">
-						<img src={rickandMorty} alt="" className="logo" />
-						<img src={logo} alt="" />
+						<img src={rickandMorty} alt="" className="logo img-fluid" />
+						<img src={logo} alt="img-fluid" />
 					</a>
 				</header>
 				</div>
@@ -49,6 +50,7 @@ export const Navbar = () => {
 
 			</div>
 			<Characters/>
+			<Boton/>
 		</div>
 	);
 };

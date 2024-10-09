@@ -26,9 +26,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return
 			}
 			const data = await response.json();
-			console.log(data.results)
-			setStore({ characters: data.results })
-		} 
+			setStore({ characters: data.results });
+		},
+			getNewCharactersRaM: async (newPage) =>{
+				const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${newPage}`)
+				if(!response.ok){
+					console.log('error:')
+				};
+				const data = await response.json();
+				let newsCharacters = data.results;
+				setStore({characters: [...getStore().characters.concat(newsCharacters)]});
+			}
+
 	}
 }
 };
