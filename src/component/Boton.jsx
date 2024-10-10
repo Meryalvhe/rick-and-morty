@@ -15,7 +15,7 @@ const setNewsCharacters=(value)=>{
 
 
 	return (
-		<div className="container d-flex justify-content-center mb-5">
+		<div className="container d-flex justify-content-center mb-2">
 			<button className="beautiful-button" onClick={()=>setNewsCharacters(newCharacters)}>
 				See more!
 			</button>
