@@ -10,15 +10,10 @@ function App() {
 	return (
 		<div className="d-flex flex-column min-vh-100">
 			<BrowserRouter basename={basename}>
-				{/* <ScrollToTop> */}
 					<Navbar />
 					<Routes>
-						{/* <Route path="/" element={<Home />} /> */}
-{/* 						<Route path="/demo" element={<Demo />} />
-						<Route path="/single/:theid" element={<Single />} /> */}
 					</Routes>
 					<Footer />
-				{/* </ScrollToTop> */}
 			</BrowserRouter>
 		</div>
 	);
